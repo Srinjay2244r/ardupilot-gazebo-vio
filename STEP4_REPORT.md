@@ -12,16 +12,18 @@ The Iris vehicle was simulated in Gazebo Harmonic using ArduPilot SITL. The came
 
 ## Results
 
-The generated `gps_vs_vio.png` provides a qualitative comparison of
-the logged GPS trajectory and the visual-odometry estimate. In the
-recorded run, the GPS horizontal track showed very little displacement,
-while the optical-flow estimate accumulated noticeable drift. This
-highlights the sensitivity of the lightweight estimate to camera motion,
-feature tracking and the assumed scale.
+The plotting script generated `gps_vs_vio.png` from `gps_position.csv`
+and `vio_estimate.csv`. In the recorded run, the GPS horizontal
+displacement remained very small, while the optical-flow estimate
+accumulated noticeable relative displacement and drift.
 
-These results demonstrate a prototype sensor-processing and plotting
-workflow; they do not establish VIO accuracy or superiority over GPS.
-No validated absolute trajectory error (ATE) or RMSE result is claimed.
+The plot provides a qualitative comparison of the recorded trajectories.
+It does not demonstrate that visual odometry is more accurate than GPS.
+The current implementation is a prototype, not a validated VIO system.
+
+The recorded `imu_log.csv` was empty, so complete IMU logging and
+quantitative validation remain outstanding. No ground-truth trajectory,
+ATE/RMSE measurement, or quantitative accuracy claim is provided.
 
 ## Limitations
 This is a lightweight demonstrator, not a calibrated full 6-DoF estimator or an OpenVINS result. It assumes constant camera height and does not solve monocular metric scale, full roll/pitch compensation, camera–IMU extrinsic calibration, or bias estimation. The plot normalizes path length and therefore compares trajectory shape, not absolute metric accuracy or an ATE/RMSE score. Results depend on visible texture, camera orientation, flight motion and GPS quality.
