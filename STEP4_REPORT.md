@@ -11,7 +11,17 @@ The Iris vehicle was simulated in Gazebo Harmonic using ArduPilot SITL. The came
 5. `plot_comparison.py` plots both tracks after independently normalizing cumulative path length, allowing a trajectory-shape comparison.
 
 ## Results
-Insert the generated `gps_vs_vio.png` here or include it as a separate deliverable. Record the number of GPS samples, camera frames and IMU samples from the generated CSV files after the actual flight. Do not invent values.
+
+The generated `gps_vs_vio.png` provides a qualitative comparison of
+the logged GPS trajectory and the visual-odometry estimate. In the
+recorded run, the GPS horizontal track showed very little displacement,
+while the optical-flow estimate accumulated noticeable drift. This
+highlights the sensitivity of the lightweight estimate to camera motion,
+feature tracking and the assumed scale.
+
+These results demonstrate a prototype sensor-processing and plotting
+workflow; they do not establish VIO accuracy or superiority over GPS.
+No validated absolute trajectory error (ATE) or RMSE result is claimed.
 
 ## Limitations
 This is a lightweight demonstrator, not a calibrated full 6-DoF estimator or an OpenVINS result. It assumes constant camera height and does not solve monocular metric scale, full roll/pitch compensation, camera–IMU extrinsic calibration, or bias estimation. The plot normalizes path length and therefore compares trajectory shape, not absolute metric accuracy or an ATE/RMSE score. Results depend on visible texture, camera orientation, flight motion and GPS quality.
